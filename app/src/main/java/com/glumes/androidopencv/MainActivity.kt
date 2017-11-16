@@ -18,7 +18,10 @@ class MainActivity : AppCompatActivity(), CameraBridgeViewBase.CvCameraViewListe
     }
 
     override fun onCameraFrame(inputFrame: CameraBridgeViewBase.CvCameraViewFrame?): Mat {
-        return inputFrame!!.rgba()
+
+        var matGray: Mat = inputFrame!!.gray()
+        Util.salt(matGray.nativeObjAddr, 2000)
+        return matGray
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
